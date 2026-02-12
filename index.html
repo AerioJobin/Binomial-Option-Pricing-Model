@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Binomial Option Lab</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="bg-orbit"></div>
+    <div class="grid-wrap">
+      <header class="hero">
+        <div class="badge">Binomial Option Lab</div>
+        <h1>Price, Stress, and Explore Options With a Clean Tree Model</h1>
+        <p>
+          A focused interface for European and American options, dividend yield,
+          implied volatility, and Greeks. Results update instantly.
+        </p>
+      </header>
+
+      <main class="layout">
+        <section class="card inputs">
+          <h2>Inputs</h2>
+          <form id="pricing-form">
+            <div class="field">
+              <label>Underlying Price (S)</label>
+              <input type="number" step="0.01" id="S" value="100" />
+            </div>
+            <div class="field">
+              <label>Strike Price (K)</label>
+              <input type="number" step="0.01" id="K" value="100" />
+            </div>
+            <div class="field">
+              <label>Time to Expiration (T, years)</label>
+              <input type="number" step="0.01" id="T" value="1" />
+            </div>
+            <div class="field">
+              <label>Risk-Free Rate (r)</label>
+              <input type="number" step="0.0001" id="r" value="0.05" />
+            </div>
+            <div class="field">
+              <label>Volatility (sigma)</label>
+              <input type="number" step="0.0001" id="sigma" value="0.2" />
+            </div>
+            <div class="field">
+              <label>Dividend Yield (q)</label>
+              <input type="number" step="0.0001" id="q" value="0.02" />
+            </div>
+            <div class="field">
+              <label>Steps (n)</label>
+              <input type="number" step="1" id="n" value="200" />
+            </div>
+            <div class="field">
+              <label>Option Type</label>
+              <select id="option_type">
+                <option value="call" selected>Call</option>
+                <option value="put">Put</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Exercise Type</label>
+              <select id="exercise_type">
+                <option value="european" selected>European</option>
+                <option value="american">American</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Target Price (for IV)</label>
+              <input type="number" step="0.0001" id="target_price" placeholder="Leave blank to skip" />
+            </div>
+            <div class="actions">
+              <button type="button" id="run">Run Pricing</button>
+              <button type="button" class="ghost" id="reset">Reset</button>
+            </div>
+            <div class="hint">
+              Tip: Use higher n for accuracy, then check convergence to see when it stabilizes.
+            </div>
+          </form>
+        </section>
+
+        <section class="card results">
+          <h2>Results</h2>
+          <div class="result-grid">
+            <div class="result-tile">
+              <div class="label">Price</div>
+              <div class="value" id="price">-</div>
+            </div>
+            <div class="result-tile">
+              <div class="label">Delta</div>
+              <div class="value" id="delta">-</div>
+            </div>
+            <div class="result-tile">
+              <div class="label">Gamma</div>
+              <div class="value" id="gamma">-</div>
+            </div>
+            <div class="result-tile">
+              <div class="label">Theta</div>
+              <div class="value" id="theta">-</div>
+            </div>
+            <div class="result-tile">
+              <div class="label">Implied Vol</div>
+              <div class="value" id="iv">-</div>
+            </div>
+            <div class="result-tile">
+              <div class="label">Converged</div>
+              <div class="value" id="conv">-</div>
+            </div>
+          </div>
+          <div class="chart-card">
+            <div class="chart-header">
+              <span>Convergence Trail</span>
+              <span class="muted" id="conv-note">n → price</span>
+            </div>
+            <canvas id="conv-chart" width="640" height="220"></canvas>
+          </div>
+          <div class="error" id="error"></div>
+        </section>
+      </main>
+    </div>
+
+    <footer class="footer">
+      <div>Model: Cox-Ross-Rubinstein binomial tree with dividend yield</div>
+      <div>Greeks via finite differences</div>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,229 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap");
+
+:root {
+  --bg: #0b0e14;
+  --bg-2: #101826;
+  --card: #141c2b;
+  --card-2: #1b2536;
+  --accent: #f4c95d;
+  --accent-2: #6dd6c7;
+  --ink: #f5f7fb;
+  --muted: #9aa5b4;
+  --danger: #ff7c7c;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Space Grotesk", sans-serif;
+  color: var(--ink);
+  background: radial-gradient(1200px 700px at 10% 10%, #1b2a3c 0%, var(--bg) 55%),
+    radial-gradient(800px 500px at 80% 20%, #1c2434 0%, #0a0f17 60%);
+  min-height: 100vh;
+}
+
+.bg-orbit {
+  position: fixed;
+  inset: -200px;
+  background: conic-gradient(from 180deg, rgba(109, 214, 199, 0.08), rgba(244, 201, 93, 0.08), rgba(109, 214, 199, 0.06));
+  filter: blur(80px);
+  z-index: 0;
+}
+
+.grid-wrap {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 48px 24px 32px;
+}
+
+.hero {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: linear-gradient(120deg, rgba(244, 201, 93, 0.2), rgba(109, 214, 199, 0.2));
+  color: var(--accent);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  font-size: 0.85rem;
+}
+
+.hero h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin: 0;
+}
+
+.hero p {
+  margin: 0;
+  color: var(--muted);
+  max-width: 680px;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(260px, 1fr) minmax(320px, 1.2fr);
+  gap: 24px;
+}
+
+.card {
+  background: linear-gradient(180deg, rgba(20, 28, 43, 0.95), rgba(16, 24, 38, 0.95));
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+}
+
+.card h2 {
+  margin: 0 0 16px 0;
+  font-size: 1.2rem;
+  letter-spacing: 0.02em;
+}
+
+.inputs form {
+  display: grid;
+  gap: 14px;
+}
+
+.field {
+  display: grid;
+  gap: 8px;
+}
+
+label {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+input,
+select {
+  background: var(--card-2);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--ink);
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+}
+
+input:focus,
+select:focus {
+  outline: 2px solid rgba(109, 214, 199, 0.4);
+  border-color: rgba(109, 214, 199, 0.6);
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+button {
+  font-family: "Space Grotesk", sans-serif;
+  border: none;
+  padding: 12px 14px;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  background: linear-gradient(120deg, var(--accent), #ffd98a);
+  color: #1b1407;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 22px rgba(244, 201, 93, 0.22);
+}
+
+button.ghost {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--ink);
+}
+
+.hint {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.result-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(120px, 1fr));
+  gap: 16px;
+}
+
+.result-tile {
+  background: var(--card-2);
+  border-radius: 16px;
+  padding: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  display: grid;
+  gap: 8px;
+}
+
+.result-tile .label {
+  font-size: 0.8rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.result-tile .value {
+  font-size: 1.3rem;
+  font-family: "IBM Plex Mono", monospace;
+}
+
+.chart-card {
+  margin-top: 18px;
+  background: linear-gradient(150deg, rgba(27, 37, 54, 0.9), rgba(20, 28, 43, 0.9));
+  padding: 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+canvas {
+  width: 100%;
+  border-radius: 12px;
+  background: rgba(6, 10, 16, 0.6);
+}
+
+.error {
+  margin-top: 12px;
+  color: var(--danger);
+  font-size: 0.9rem;
+}
+
+.footer {
+  padding: 18px 24px 30px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.85rem;
+  display: grid;
+  gap: 4px;
+}
+
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+  .actions {
+    grid-template-columns: 1fr;
+  }
+}

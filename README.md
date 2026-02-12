@@ -11,3 +11,10 @@ Number of Steps (n): The number of time steps in the binomial tree.
 Functionality
 The model calculates the theoretical price of both call and put options for European and American exercise types.
 
+UI (Web App)
+Open index.html in a browser to use the interactive UI. It includes:
+- Pricing for European and American options with dividend yield.
+- Greeks (Delta, Gamma, Theta).
+- Implied volatility solver from a target price.
+- Convergence trail chart to see stabilization across step counts.
+
